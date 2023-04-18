@@ -1,0 +1,38 @@
+.todo {
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.stamp {
+  font-weight: 300;
+  font-size: 0.85rem;
+  color: #dad1d1c5;
+  text-align: end;
+  margin-bottom: -0.5rem;
+}
+
+.delete {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  padding: 0.2em 0.5em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--blue);
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+/* button:hover {
+  border-color: #727279;
+  scale: 1.05;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+} */
