@@ -32,9 +32,11 @@ export const useTodo = () => {
     setEditingTodo(null)
   }
 
-  const saveEdit = (id, newText) => {
+  const saveEdit = (id, newText, updatedTimestamp) => {
     const updatedTodos = todo.map((t) =>
-      t.id === id ? { ...t, text: newText } : t
+      t.id === id
+        ? { ...t, text: newText, timestamp: updatedTimestamp, isEdited: true }
+        : t
     )
     setTodo(updatedTodos)
     setEditingTodo(null)

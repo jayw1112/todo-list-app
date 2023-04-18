@@ -10,6 +10,7 @@ const Todo = ({
   startEditing,
   stopEditing,
   saveEdit,
+  isEdited,
 }) => {
   const [editedText, setEditedText] = useState(text)
   const isEditing = editingTodo && editingTodo.id === id
@@ -23,7 +24,7 @@ const Todo = ({
   }
 
   const saveHandler = () => {
-    saveEdit(id, editedText)
+    saveEdit(id, editedText, Date.now())
     stopEditing()
   }
 
@@ -37,10 +38,10 @@ const Todo = ({
     }
   }
 
-  //   const cancelHandler = () => {
-  //     setEditedText(text)
-  //     stopEditing()
-  //   }
+  const cancelHandler = () => {
+    setEditedText(text)
+    stopEditing()
+  }
 
   //   const blurHandler = () => {
   //     saveHandler()
@@ -58,21 +59,22 @@ const Todo = ({
           type='text'
           defaultValue={text}
           onChange={changeHandler}
-          onBlur={saveHandler}
+          //   onBlur={cancelHandler}
           onKeyDown={enterHandler}
         />
       ) : (
         <p>{text}</p>
       )}
       <p className={classes.stamp}>
-        Created at: {new Date(timestamp).toLocaleString()}
+        {!isEdited ? 'Created' : 'Edited'} at:{' '}
+        {new Date(timestamp).toLocaleString()}
       </p>
       {!isEditing ? (
         <button onClick={editHandler}>Edit</button>
       ) : (
         <div>
           <button onClick={saveHandler}>Save</button>
-          {/* <button onClick={cancelHandler}>Cancel</button> */}
+          <button onClick={cancelHandler}>Cancel</button>
         </div>
       )}
     </div>
