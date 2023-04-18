@@ -5,6 +5,7 @@ export const useTodo = () => {
   const initialTodo = savedTodo ? JSON.parse(savedTodo) : []
 
   const [todo, setTodo] = useState(initialTodo)
+  const [editingTodo, setEditingTodo] = useState(null)
 
   const addTodo = (text) => {
     const newTodo = {
@@ -22,9 +23,34 @@ export const useTodo = () => {
     setTodo(newTodo)
   }
 
+  const startEditing = (id) => {
+    const todoToEdit = todo.find((todo) => todo.id === id)
+    setEditingTodo(todoToEdit)
+  }
+
+  const stopEditing = () => {
+    setEditingTodo(null)
+  }
+
+  const saveEdit = (id, newText) => {
+    const updatedTodos = todo.map((t) =>
+      t.id === id ? { ...t, text: newText } : t
+    )
+    setTodo(updatedTodos)
+    setEditingTodo(null)
+  }
+
   useEffect(() => {
     localStorage.setItem('todo', JSON.stringify(todo))
   }, [todo])
 
-  return { todo, addTodo, deleteTodo }
+  return {
+    todo,
+    addTodo,
+    deleteTodo,
+    startEditing,
+    stopEditing,
+    saveEdit,
+    editingTodo,
+  }
 }
