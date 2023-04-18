@@ -1,11 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './App.css'
 import AddBox from './components/AddBox'
 import Search from './components/Search'
 import Todo from './components/Todo'
 
 function App() {
-  const [todo, setTodo] = useState([])
+  const savedTodo = localStorage.getItem('todo')
+  const initialTodo = savedTodo ? JSON.parse(savedTodo) : []
+
+  const [todo, setTodo] = useState(initialTodo)
 
   const addTodo = (text) => {
     const newTodo = {
@@ -14,13 +17,18 @@ function App() {
       timestamp: Date.now(),
     }
 
-    setTodo([...todo, newTodo])
+    const updatedTodos = [...todo, newTodo]
+    setTodo(updatedTodos)
   }
 
   const deleteTodo = (id) => {
     const newTodo = todo.filter((todo) => todo.id !== id)
     setTodo(newTodo)
   }
+
+  useEffect(() => {
+    localStorage.setItem('todo', JSON.stringify(todo))
+  }, [todo])
 
   return (
     <div className='app'>
