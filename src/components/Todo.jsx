@@ -37,14 +37,14 @@ const Todo = ({
     }
   }
 
-  const cancelHandler = () => {
-    setEditedText(text)
-    stopEditing()
-  }
+  //   const cancelHandler = () => {
+  //     setEditedText(text)
+  //     stopEditing()
+  //   }
 
-  const blurHandler = () => {
-    saveHandler()
-  }
+  //   const blurHandler = () => {
+  //     saveHandler()
+  //   }
 
   return (
     <div className={classes.todo}>
@@ -58,7 +58,7 @@ const Todo = ({
           type='text'
           defaultValue={text}
           onChange={changeHandler}
-          onBlur={blurHandler}
+          onBlur={saveHandler}
           onKeyDown={enterHandler}
         />
       ) : (
@@ -72,7 +72,7 @@ const Todo = ({
       ) : (
         <div>
           <button onClick={saveHandler}>Save</button>
-          <button onClick={cancelHandler}>Cancel</button>
+          {/* <button onClick={cancelHandler}>Cancel</button> */}
         </div>
       )}
     </div>
