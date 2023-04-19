@@ -29,10 +29,10 @@ const AddBox = ({ addTodo }) => {
     <div className={classes.container}>
       <form onSubmit={handleSubmit}>
         <textarea
-          name='textBox'
+          className={classes.textBox}
           id='textBox'
           cols='30'
-          rows='10'
+          rows='5'
           placeholder='Add Todo Here'
           value={text}
           onChange={handleChange}

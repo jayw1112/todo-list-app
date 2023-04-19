@@ -68,13 +68,14 @@ const Todo = ({
       {isEditing ? (
         <input
           type='text'
+          className={classes.todoInput}
           defaultValue={text}
           onChange={changeHandler}
           //   onBlur={cancelHandler}
           onKeyDown={enterHandler}
         />
       ) : (
-        <p>{text}</p>
+        <p className={classes.todoText}>{text}</p>
       )}
       <p className={classes.stamp}>
         {!isEdited ? 'Created' : 'Edited'} at:{' '}
@@ -84,7 +85,9 @@ const Todo = ({
         <button onClick={editHandler}>Edit</button>
       ) : (
         <div>
-          <button onClick={saveHandler}>Save</button>
+          <button onClick={saveHandler} className={classes.saveButton}>
+            Save
+          </button>
           <button onClick={cancelHandler}>Cancel</button>
         </div>
       )}

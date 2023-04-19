@@ -27,7 +27,7 @@ form {
   background-color: var(--blue);
   cursor: pointer;
   transition: border-color 0.25s;
-  width: 100%;
+  width: 60%;
 }
 button:hover {
   border-color: #727279;
@@ -36,4 +36,19 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+.textBox {
+  /* width: 60%; */
+  padding: 0.5rem;
+  border: 1px none var(--blue);
+  border-radius: 4px;
+  margin-right: 1rem;
+  font-size: 0.9rem;
+  font-weight: 300;
+  font-family: inherit;
+}
+
+.textBox:focus {
+  outline: 2px solid var(--blue);
 }

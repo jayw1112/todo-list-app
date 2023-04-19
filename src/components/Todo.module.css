@@ -49,3 +49,17 @@ button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 } */
+
+.saveButton {
+  margin-right: 0.32rem;
+}
+
+.todoText {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.todoInput {
+  font-size: 1rem;
+}
