@@ -12,6 +12,9 @@
   color: #dad1d1c5;
   text-align: end;
   margin-bottom: -0.5rem;
+  position: absolute;
+  bottom: 0.8rem;
+  right: 3rem;
 }
 
 .delete {

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import classes from './Todo.module.css'
+import Checkbox from './Checkbox'
 
 const Todo = ({
   id,
@@ -81,6 +82,8 @@ const Todo = ({
         {!isEdited ? 'Created' : 'Edited'} at:{' '}
         {new Date(timestamp).toLocaleString()}
       </p>
+      <Checkbox todoId={id} />
+
       {!isEditing ? (
         <button onClick={editHandler}>Edit</button>
       ) : (
