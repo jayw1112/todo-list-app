@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 export const useTodo = () => {
   const savedTodo = localStorage.getItem('todo')
@@ -7,9 +7,12 @@ export const useTodo = () => {
   const [todo, setTodo] = useState(initialTodo)
   const [editingTodo, setEditingTodo] = useState(null)
 
+  const dragItem = useRef()
+  const dragOverItem = useRef()
+
   const addTodo = (text) => {
     const newTodo = {
-      id: Date.now(),
+      id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`, // Updated id generation
       text: text,
       timestamp: Date.now(),
     }
@@ -46,6 +49,24 @@ export const useTodo = () => {
     localStorage.setItem('todo', JSON.stringify(todo))
   }, [todo])
 
+  const dragStart = (e, position) => {
+    dragItem.current = position
+  }
+
+  const dragEnter = (e, position) => {
+    dragOverItem.current = position
+  }
+
+  const drop = (e) => {
+    const copyListItem = [...todo]
+    const dragItemContent = copyListItem[dragItem.current]
+    copyListItem.splice(dragItem.current, 1)
+    copyListItem.splice(dragOverItem.current, 0, dragItemContent)
+    dragItem.current = null
+    dragOverItem.current = null
+    setTodo(copyListItem)
+  }
+
   return {
     todo,
     addTodo,
@@ -54,5 +75,8 @@ export const useTodo = () => {
     stopEditing,
     saveEdit,
     editingTodo,
+    dragStart,
+    dragEnter,
+    drop,
   }
 }

@@ -11,6 +11,9 @@ const Todo = ({
   stopEditing,
   saveEdit,
   isEdited,
+  dragStart,
+  dragEnter,
+  drop,
 }) => {
   const [editedText, setEditedText] = useState(text)
   const isEditing = editingTodo && editingTodo.id === id
@@ -48,7 +51,15 @@ const Todo = ({
   //   }
 
   return (
-    <div className={classes.todo}>
+    <div
+      className={classes.todo}
+      draggable
+      onDragStart={dragStart}
+      onDragEnter={dragEnter}
+      onDrop={drop}
+      onDragOver={(e) => e.preventDefault()}
+      // data-index={index}
+    >
       {!isEditing && (
         <button onClick={deleteHandler} className={classes.delete}>
           X

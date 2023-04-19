@@ -13,6 +13,9 @@ function App() {
     saveEdit,
     stopEditing,
     editingTodo,
+    dragStart,
+    dragEnter,
+    drop,
   } = useTodo()
 
   return (
@@ -21,18 +24,21 @@ function App() {
       <Search />
       <AddBox addTodo={addTodo} />
       <div>
-        {todo.map((todo) => (
+        {todo.map((todo, index) => (
           <Todo
             deleteTodo={deleteTodo}
             startEditing={startEditing}
             saveEdit={saveEdit}
             stopEditing={stopEditing}
             editingTodo={editingTodo}
-            key={todo.id}
+            key={index}
             id={todo.id}
             text={todo.text}
             timestamp={todo.timestamp}
             isEdited={todo.isEdited}
+            dragStart={(e) => dragStart(e, index)}
+            dragEnter={(e) => dragEnter(e, index)}
+            drop={drop}
           />
         ))}
       </div>
