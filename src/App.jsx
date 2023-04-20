@@ -22,6 +22,15 @@ function App() {
 
   const [selectedRadio, setSelectedRadio] = useState('all')
 
+  // const filteredTodos = todo.filter((t) => {
+  //   if (selectedRadio === 'completed') {
+  //     return t.isCompleted
+  //   } else if (selectedRadio === 'inProgress') {
+  //     return !t.isCompleted
+  //   }
+  //   return true
+  // })
+
   return (
     <div className='app'>
       <h1>Todo App</h1>
@@ -45,6 +54,7 @@ function App() {
             dragEnter={(e) => dragEnter(e, index)}
             drop={drop}
             selectedRadio={selectedRadio}
+            isCompleted={todo.isCompleted}
           />
         ))}
       </div>

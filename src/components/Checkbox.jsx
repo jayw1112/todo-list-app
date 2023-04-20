@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react'
 import classes from './Checkbox.module.css'
 
-const Checkbox = ({ todoId, isChecked, setIsChecked }) => {
+const Checkbox = ({ todoId, isChecked, setIsChecked, setIsCompleted }) => {
   useEffect(() => {
     localStorage.setItem(`checkbox-${todoId}`, JSON.stringify(isChecked))
   }, [isChecked])
 
-  const checkHandler = () => {
+  const checkHandler = (e) => {
+    setIsCompleted(todoId, e.target.checked)
     setIsChecked(!isChecked)
   }
 

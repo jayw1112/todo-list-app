@@ -15,6 +15,7 @@ export const useTodo = () => {
       id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`, // Updated id generation
       text: text,
       timestamp: Date.now(),
+      isCompleted: false,
     }
 
     const updatedTodos = [...todo, newTodo]

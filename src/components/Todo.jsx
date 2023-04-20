@@ -16,6 +16,7 @@ const Todo = ({
   dragEnter,
   drop,
   selectedRadio,
+  isCompleted,
 }) => {
   const [editedText, setEditedText] = useState(text)
   const isEditing = editingTodo && editingTodo.id === id
@@ -62,9 +63,9 @@ const Todo = ({
   //   }
 
   useEffect(() => {
-    if (selectedRadio === 'completed') {
+    if (selectedRadio === 'radio2') {
       setIsVisible(isChecked)
-    } else if (selectedRadio === 'inProgress') {
+    } else if (selectedRadio === 'radio3') {
       setIsVisible(!isChecked)
     } else {
       setIsVisible(true)
@@ -112,6 +113,8 @@ const Todo = ({
         todoId={id}
         isChecked={isChecked}
         setIsChecked={setIsChecked}
+        isCompleted={isCompleted}
+        setIsCompleted={setIsChecked}
         // initialState={initialState}
       />
 
