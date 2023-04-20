@@ -19,6 +19,13 @@ const Todo = ({
   const [editedText, setEditedText] = useState(text)
   const isEditing = editingTodo && editingTodo.id === id
 
+  const initialState = () => {
+    const savedState = localStorage.getItem(`checkbox-${id}`)
+    return savedState ? JSON.parse(savedState) : false
+  }
+
+  const [isChecked, setIsChecked] = useState(initialState)
+
   const editHandler = () => {
     startEditing(id)
   }
@@ -76,13 +83,24 @@ const Todo = ({
           onKeyDown={enterHandler}
         />
       ) : (
-        <p className={classes.todoText}>{text}</p>
+        <p
+          className={`${classes.todoText} ${
+            isChecked ? classes.lineThrough : ''
+          }`}
+        >
+          {text}
+        </p>
       )}
       <p className={classes.stamp}>
         {!isEdited ? 'Created' : 'Edited'} at:{' '}
         {new Date(timestamp).toLocaleString()}
       </p>
-      <Checkbox todoId={id} />
+      <Checkbox
+        todoId={id}
+        isChecked={isChecked}
+        setIsChecked={setIsChecked}
+        // initialState={initialState}
+      />
 
       {!isEditing ? (
         <button onClick={editHandler}>Edit</button>

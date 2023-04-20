@@ -66,3 +66,7 @@ button:focus-visible {
 .todoInput {
   font-size: 1rem;
 }
+
+.lineThrough {
+  text-decoration: line-through;
+}
