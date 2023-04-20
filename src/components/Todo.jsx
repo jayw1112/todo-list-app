@@ -17,7 +17,6 @@ const Todo = ({
   drop,
   selectedRadio,
   isCompleted,
-  handleScroll,
 }) => {
   const [editedText, setEditedText] = useState(text)
   const isEditing = editingTodo && editingTodo.id === id
@@ -59,10 +58,6 @@ const Todo = ({
     stopEditing()
   }
 
-  //   const blurHandler = () => {
-  //     saveHandler()
-  //   }
-
   useEffect(() => {
     if (selectedRadio === 'radio2') {
       setIsVisible(isChecked)
@@ -82,9 +77,7 @@ const Todo = ({
       onDrop={drop}
       onDragOver={(e) => {
         e.preventDefault()
-        handleScroll(e)
       }}
-      // data-index={index}
     >
       {!isEditing && (
         <button onClick={deleteHandler} className={classes.delete}>
@@ -97,7 +90,6 @@ const Todo = ({
           className={classes.todoInput}
           defaultValue={text}
           onChange={changeHandler}
-          //   onBlur={cancelHandler}
           onKeyDown={enterHandler}
         />
       ) : (
@@ -119,7 +111,6 @@ const Todo = ({
         setIsChecked={setIsChecked}
         isCompleted={isCompleted}
         setIsCompleted={setIsChecked}
-        // initialState={initialState}
       />
 
       {!isEditing ? (
