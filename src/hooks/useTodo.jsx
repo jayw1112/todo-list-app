@@ -52,6 +52,7 @@ export const useTodo = () => {
 
   const dragStart = (e, position) => {
     dragItem.current = position
+    // e.dataTransfer.setDragImage(e.target, 0, 0)
   }
 
   const dragEnter = (e, position) => {
@@ -68,6 +69,18 @@ export const useTodo = () => {
     setTodo(copyListItem)
   }
 
+  const handleScroll = (e) => {
+    const container = document.querySelector('.app')
+    const scrollThreshold = 20
+    const scrollSpeed = 5
+
+    if (e.clientY < scrollThreshold) {
+      container.scrollBy(0, -scrollSpeed)
+    } else if (window.innerHeight - e.clientY < scrollThreshold) {
+      container.scrollBy(0, scrollSpeed)
+    }
+  }
+
   return {
     todo,
     addTodo,
@@ -79,5 +92,6 @@ export const useTodo = () => {
     dragStart,
     dragEnter,
     drop,
+    handleScroll,
   }
 }

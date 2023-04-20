@@ -17,6 +17,7 @@ const Todo = ({
   drop,
   selectedRadio,
   isCompleted,
+  handleScroll,
 }) => {
   const [editedText, setEditedText] = useState(text)
   const isEditing = editingTodo && editingTodo.id === id
@@ -79,7 +80,10 @@ const Todo = ({
       onDragStart={dragStart}
       onDragEnter={dragEnter}
       onDrop={drop}
-      onDragOver={(e) => e.preventDefault()}
+      onDragOver={(e) => {
+        e.preventDefault()
+        handleScroll(e)
+      }}
       // data-index={index}
     >
       {!isEditing && (
