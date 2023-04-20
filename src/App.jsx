@@ -1,6 +1,8 @@
+import React, { useState } from 'react'
 import './App.css'
 import AddBox from './components/AddBox'
-import Search from './components/Search'
+import RadioInput from './components/RadioInput'
+// import Search from './components/Search'
 import Todo from './components/Todo'
 import { useTodo } from './hooks/useTodo'
 
@@ -18,10 +20,13 @@ function App() {
     drop,
   } = useTodo()
 
+  const [selectedRadio, setSelectedRadio] = useState('all')
+
   return (
     <div className='app'>
       <h1>Todo App</h1>
-      <Search />
+      {/* <Search /> */}
+      <RadioInput setSelectedRadio={setSelectedRadio} />
       <AddBox addTodo={addTodo} />
       <div>
         {todo.map((todo, index) => (
@@ -39,6 +44,7 @@ function App() {
             dragStart={(e) => dragStart(e, index)}
             dragEnter={(e) => dragEnter(e, index)}
             drop={drop}
+            selectedRadio={selectedRadio}
           />
         ))}
       </div>

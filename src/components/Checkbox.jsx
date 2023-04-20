@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import classes from './Checkbox.module.css'
 
 const Checkbox = ({ todoId, isChecked, setIsChecked }) => {

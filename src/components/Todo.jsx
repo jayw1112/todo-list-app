@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import classes from './Todo.module.css'
 import Checkbox from './Checkbox'
 
@@ -15,9 +15,12 @@ const Todo = ({
   dragStart,
   dragEnter,
   drop,
+  selectedRadio,
 }) => {
   const [editedText, setEditedText] = useState(text)
   const isEditing = editingTodo && editingTodo.id === id
+
+  const [isVisible, setIsVisible] = useState(true)
 
   const initialState = () => {
     const savedState = localStorage.getItem(`checkbox-${id}`)
@@ -58,7 +61,17 @@ const Todo = ({
   //     saveHandler()
   //   }
 
-  return (
+  useEffect(() => {
+    if (selectedRadio === 'completed') {
+      setIsVisible(isChecked)
+    } else if (selectedRadio === 'inProgress') {
+      setIsVisible(!isChecked)
+    } else {
+      setIsVisible(true)
+    }
+  }, [selectedRadio, isChecked])
+
+  return isVisible ? (
     <div
       className={classes.todo}
       draggable
@@ -113,7 +126,7 @@ const Todo = ({
         </div>
       )}
     </div>
-  )
+  ) : null
 }
 
 export default Todo
