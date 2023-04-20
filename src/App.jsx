@@ -31,7 +31,7 @@ function App() {
             saveEdit={saveEdit}
             stopEditing={stopEditing}
             editingTodo={editingTodo}
-            key={index}
+            key={`${todo.id}-${todo.index}`}
             id={todo.id}
             text={todo.text}
             timestamp={todo.timestamp}
