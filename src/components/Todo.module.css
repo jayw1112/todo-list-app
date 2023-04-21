@@ -68,5 +68,5 @@ button:focus-visible {
 }
 
 .lineThrough {
-  text-decoration: line-through;
+  text-decoration: line-through 0.3em var(--blue2);
 }

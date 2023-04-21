@@ -52,3 +52,35 @@ button:focus-visible {
 .textBox:focus {
   outline: 2px solid var(--blue);
 }
+
+@media (max-width: 480px) {
+  .container {
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    align-items: center;
+    justify-items: center;
+  }
+  /* .textBox {
+    width: 100%;
+  }
+  .subButton {
+    width: 100%;
+  } */
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .container {
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    align-items: center;
+    justify-items: center;
+  }
+  /* .textBox {
+    width: 100%;
+  }
+  .subButton {
+    width: 100%;
+  } */
+}

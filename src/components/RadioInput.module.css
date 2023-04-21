@@ -108,3 +108,27 @@ input[type='radio']:checked + span.customRadio::before {
   background-position: center;
   background-repeat: no-repeat;
 }
+
+@media (max-width: 480px) {
+  .buttonContainer {
+    /* flex-direction: column; */
+    margin: 1rem;
+    padding: 0 2rem;
+  }
+
+  .radioLabel {
+    padding: 0.5rem;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .buttonContainer {
+    /* flex-direction: column; */
+    margin: 1rem 2rem;
+    padding: 0 1rem;
+  }
+
+  .radioLabel {
+    padding: 1rem;
+  }
+}
