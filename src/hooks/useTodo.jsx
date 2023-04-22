@@ -7,6 +7,11 @@ export const useTodo = () => {
   const [todo, setTodo] = useState(initialTodo)
   const [editingTodo, setEditingTodo] = useState(null)
 
+  const [draggingIndex, setDraggingIndex] = useState(null)
+
+  const [touchStartItem, setTouchStartItem] = useState(null)
+  const [touchEndItem, setTouchEndItem] = useState(null)
+
   const dragItem = useRef()
   const dragOverItem = useRef()
 
@@ -51,21 +56,65 @@ export const useTodo = () => {
   }, [todo])
 
   const dragStart = (e, position) => {
-    dragItem.current = position
+    if (e.type === 'touchstart') {
+      setTouchStartItem(position)
+      setDraggingIndex(position)
+    } else {
+      dragItem.current = position
+      setDraggingIndex(position)
+    }
   }
-
   const dragEnter = (e, position) => {
-    dragOverItem.current = position
+    if (e.type === 'touchmove') {
+      if (touchStartItem !== null) {
+        // e.preventDefault()
+        setTouchEndItem(position)
+      }
+    } else {
+      dragOverItem.current = position
+    }
   }
 
   const drop = (e) => {
-    const copyListItem = [...todo]
-    const dragItemContent = copyListItem[dragItem.current]
-    copyListItem.splice(dragItem.current, 1)
-    copyListItem.splice(dragOverItem.current, 0, dragItemContent)
-    dragItem.current = null
-    dragOverItem.current = null
-    setTodo(copyListItem)
+    if (e.type === 'touchend') {
+      if (touchStartItem === null || touchEndItem === null) {
+        return
+      }
+
+      // Calculate index based on touch position
+      const touch = e.changedTouches[0]
+      const element = document.elementFromPoint(touch.clientX, touch.clientY)
+      const todoElements = document.querySelectorAll('[data-todo-item]')
+      const index = Array.from(todoElements).findIndex((el) => el === element)
+
+      if (index === -1) {
+        setTouchStartItem(null)
+        setTouchEndItem(null)
+        setDraggingIndex(null)
+        return
+      }
+
+      const copyListItem = [...todo]
+      const dragItemContent = copyListItem[touchStartItem]
+      copyListItem.splice(touchStartItem, 1)
+      copyListItem.splice(index, 0, dragItemContent)
+      setTouchStartItem(null)
+      setTouchEndItem(null)
+      setTodo(copyListItem)
+    } else {
+      if (dragItem.current === null) {
+        return
+      }
+
+      const copyListItem = [...todo]
+      const dragItemContent = copyListItem[dragItem.current]
+      copyListItem.splice(dragItem.current, 1)
+      copyListItem.splice(dragOverItem.current, 0, dragItemContent)
+      dragItem.current = null
+      dragOverItem.current = null
+      setDraggingIndex(null)
+      setTodo(copyListItem)
+    }
   }
 
   return {
@@ -79,5 +128,6 @@ export const useTodo = () => {
     dragStart,
     dragEnter,
     drop,
+    draggingIndex,
   }
 }

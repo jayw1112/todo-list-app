@@ -28,7 +28,12 @@ function App() {
       {/* <Search /> */}
       <RadioInput setSelectedRadio={setSelectedRadio} />
       <AddBox addTodo={addTodo} />
-      <div>
+      <div
+        onTouchEnd={(e) => {
+          e.persist()
+          drop(e)
+        }}
+      >
         {todo.map((todo, index) => (
           <Todo
             deleteTodo={deleteTodo}
@@ -46,6 +51,8 @@ function App() {
             drop={drop}
             selectedRadio={selectedRadio}
             isCompleted={todo.isCompleted}
+            index={index}
+            draggingIndex={editingTodo && editingTodo.draggingIndex}
           />
         ))}
       </div>

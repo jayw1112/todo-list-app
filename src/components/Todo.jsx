@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import classes from './Todo.module.css'
 import Checkbox from './Checkbox'
 
@@ -17,12 +17,19 @@ const Todo = ({
   drop,
   selectedRadio,
   isCompleted,
+  index,
+  // draggingIndex,
 }) => {
+  const elementRef = useRef(null)
+
   const [editedText, setEditedText] = useState(text)
   const isEditing = editingTodo && editingTodo.id === id
 
   const [isVisible, setIsVisible] = useState(true)
   const [showWarning, setShowWarning] = useState(false)
+
+  // const isDragging = draggingIndex === index
+  // const isDragOver = dragOverItem.current === index || touchEndItem === index
 
   const initialState = () => {
     const savedState = localStorage.getItem(`checkbox-${id}`)
@@ -87,6 +94,24 @@ const Todo = ({
       onDragOver={(e) => {
         e.preventDefault()
       }}
+      onTouchStart={(e) => {
+        e.persist()
+        dragStart(e, index)
+      }}
+      onTouchMove={(e) => {
+        e.persist()
+        dragEnter(e, index)
+      }}
+      onTouchEnd={(e) => {
+        e.persist()
+        drop(e)
+      }}
+      onTouchCancel={(e) => {
+        setTouchStartItem(null)
+        setTouchEndItem(null)
+      }}
+      data-todo-item
+      ref={elementRef}
     >
       {!isEditing && (
         <button onClick={deleteHandler} className={classes.delete}>
