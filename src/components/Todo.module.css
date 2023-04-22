@@ -2,8 +2,13 @@
   padding: 1rem;
   border: 1px solid #ccc;
   border-radius: 4px;
-  margin-bottom: 1rem;
+  margin: 1.3rem;
   position: relative;
+  display: block;
+  max-width: 80%;
+
+  /* min-width: 2rem; */
+  /* align-items: center; */
 }
 
 .stamp {
@@ -30,12 +35,14 @@
   background-color: var(--blue);
   cursor: pointer;
   transition: border-color 0.25s;
+  margin: 0;
 }
 
 button {
   border-radius: 10px;
   border: 1px solid transparent;
   padding: 0.2em 0.5em;
+  margin: 0.35rem;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
@@ -60,13 +67,91 @@ button:focus-visible {
 .todoText {
   font-size: 1.2rem;
   font-weight: 700;
-  margin-bottom: 0.5rem;
+  margin: 0.5rem;
+  margin-right: -1rem;
+  max-width: 80%;
+  word-break: break-word;
 }
 
 .todoInput {
   font-size: 1rem;
+  font-weight: 300;
+  margin: 0.5rem;
+  padding: 0.3rem;
+}
+
+.todoInput:focus {
+  outline: 2px solid var(--blue);
+  border: 1px solid var(--grayWhite);
 }
 
 .lineThrough {
   text-decoration: line-through 0.3em var(--blue2);
+}
+
+.warning {
+  color: rgba(238, 151, 151, 0.637);
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 480px) {
+  .todo {
+    padding: 0.5rem;
+    margin: 1rem 0.5rem;
+  }
+
+  .stamp {
+    font-size: 0.6rem;
+  }
+
+  button {
+    padding: 0.3em;
+    scale: 0.75;
+    margin: 0.5rem 0;
+  }
+
+  .saveButton {
+    margin-right: -0.5rem;
+  }
+
+  .todoText {
+    font-size: 0.9rem;
+  }
+  .todoInput {
+    font-size: 0.9rem;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .todo {
+    padding: 0.8rem;
+  }
+
+  .stamp {
+    font-size: 0.7rem;
+  }
+
+  button {
+    padding: 0.3em;
+    scale: 0.85;
+    margin: 0.5rem 0;
+    margin-left: 0.5rem;
+  }
+
+  .saveButton {
+    margin-right: -0.5rem;
+  }
+
+  /* .delete {
+    scale: 0.8;
+  } */
+
+  .todoText {
+    font-size: 1rem;
+  }
+
+  .todoInput {
+    font-size: 1rem;
+  }
 }

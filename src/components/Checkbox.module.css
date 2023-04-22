@@ -26,6 +26,7 @@
   background-color: transparent;
   border: 2px solid var(--grayBlack);
   position: relative;
+  cursor: pointer;
 }
 
 .checkbox::before {
@@ -44,4 +45,12 @@
   box-shadow: 1px 2px 28px 1px var(--blue);
   /* -webkit-box-shadow: 1px 2px 28px 1px var(--grayWhite); */
   -moz-box-shadow: 1px 2px 28px 1px var(--blue);
+}
+
+@media (max-width: 480px) {
+  .checkbox {
+    /* width: 17px;
+    height: 17px; */
+    scale: 0.8;
+  }
 }

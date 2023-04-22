@@ -5,6 +5,7 @@
   padding: 1rem;
   margin: 1rem 10rem;
   align-self: center;
+  scale: 0.83;
 }
 
 .radioLabel {
@@ -23,6 +24,7 @@
   border: 2px solid var(--grayBlack);
   border-radius: 50%;
   position: relative;
+  cursor: pointer;
 }
 
 input[type='radio'] {
@@ -30,61 +32,6 @@ input[type='radio'] {
   width: 1rem;
   opacity: 0;
 }
-
-/* 
-input[type='radio'] {
-  margin: 0 0;
-  padding: 2rem;
-  width: 1rem;
-  height: 2.3rem;
-  opacity: 0; */
-/* clip-path: none; */
-/* } */
-
-/* input[type='radio']:checked + .radioLabel {
-  background-color: var(--blue);
-  color: var(--grayWhite);
-  border-radius: 8px;
-} */
-
-/* input[type='radio']:checked {
-  background-color: var(--blue);
-  background-image: url('../assets/radio-button.svg');
-  background-position: center;
-  background-repeat: no-repeat; */
-/* box-shadow: 1px 2px 28px 1px var(--blue); */
-/* -webkit-box-shadow: 1px 2px 28px 1px var(--grayWhite); */
-/* -moz-box-shadow: 1px 2px 28px 1px var(--blue); */
-/* } */
-
-/* .customRadio::before {
-  content: '';
-  display: block;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background-color: var(--blue);
-  background-image: url('../assets/radio-button.svg');
-  background-position: center;
-  background-repeat: no-repeat; */
-/* box-shadow: 1px 2px 28px 1px var(--blue); */
-/* -webkit-box-shadow: 1px 2px 28px 1px var(--grayWhite); */
-/* -moz-box-shadow: 1px 2px 28px 1px var(--blue); */
-/* } */
-
-/* input[type='radio']:checked + .radioLabel::after {
-  content: '';
-  display: block;
-  width: 100%;
-  height: 100%;
-  background-color: var(--blue);
-  background-image: url('../assets/check.svg');
-  background-position: center;
-  background-repeat: no-repeat;
-  box-shadow: 1px 2px 28px 1px var(--blue);
-  -webkit-box-shadow: 1px 2px 28px 1px var(--grayWhite);
-  -moz-box-shadow: 1px 2px 28px 1px var(--blue);
-} */
 
 input[type='radio']:checked + span.customRadio::before {
   content: '';
@@ -113,11 +60,14 @@ input[type='radio']:checked + span.customRadio::before {
   .buttonContainer {
     /* flex-direction: column; */
     margin: 1rem;
-    padding: 0 2rem;
+    /* padding: 2rem; */
+    justify-content: center;
   }
 
   .radioLabel {
     padding: 0.5rem;
+    /* font-size: 0.8rem; */
+    scale: 0.8;
   }
 }
 
@@ -126,9 +76,11 @@ input[type='radio']:checked + span.customRadio::before {
     /* flex-direction: column; */
     margin: 1rem 2rem;
     padding: 0 1rem;
+    justify-content: center;
   }
 
   .radioLabel {
     padding: 1rem;
+    scale: 0.85;
   }
 }

@@ -45,12 +45,27 @@ button:focus-visible {
   border-radius: 4px;
   margin-right: 1rem;
   font-size: 0.9rem;
-  font-weight: 300;
+  /* font-weight: 300; */
   font-family: inherit;
+  font-weight: bold;
 }
 
 .textBox:focus {
-  outline: 2px solid var(--blue);
+  outline: 5px groove var(--blue);
+  /* border: 3px groove var(--grayWhite); */
+}
+
+/* .textBox:focus::placeholder {
+  color: var(--grayWhite); 
+  font-weight: bold;
+} */
+
+.warningText::placeholder {
+  color: rgba(238, 151, 151, 0.637);
+}
+
+.warningText:focus::placeholder {
+  color: rgba(238, 151, 151, 0.637);
 }
 
 @media (max-width: 480px) {
@@ -60,6 +75,7 @@ button:focus-visible {
     gap: 1rem;
     align-items: center;
     justify-items: center;
+    scale: 0.9;
   }
   /* .textBox {
     width: 100%;

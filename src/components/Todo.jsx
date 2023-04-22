@@ -22,6 +22,7 @@ const Todo = ({
   const isEditing = editingTodo && editingTodo.id === id
 
   const [isVisible, setIsVisible] = useState(true)
+  const [showWarning, setShowWarning] = useState(false)
 
   const initialState = () => {
     const savedState = localStorage.getItem(`checkbox-${id}`)
@@ -39,12 +40,20 @@ const Todo = ({
   }
 
   const saveHandler = () => {
+    if (!editedText.trim()) {
+      setShowWarning(true)
+      return
+    }
+    setShowWarning(false)
     saveEdit(id, editedText, Date.now())
     stopEditing()
   }
 
   const changeHandler = (e) => {
     setEditedText(e.target.value)
+    if (e.target.value.trim()) {
+      setShowWarning(false)
+    }
   }
 
   const enterHandler = (e) => {
@@ -91,6 +100,8 @@ const Todo = ({
           defaultValue={text}
           onChange={changeHandler}
           onKeyDown={enterHandler}
+          minLength={1}
+          maxLength={75}
         />
       ) : (
         <p
@@ -121,6 +132,9 @@ const Todo = ({
             Save
           </button>
           <button onClick={cancelHandler}>Cancel</button>
+          {showWarning && (
+            <p className={classes.warning}>Please enter a valid todo.</p>
+          )}
         </div>
       )}
     </div>

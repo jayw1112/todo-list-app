@@ -47,6 +47,8 @@ h1 {
   text-shadow: 5px 1px 2px var(--blue);
   text-decoration: underline var(--blue);
   /* text-decoration-skip-ink: none; */
+  margin-bottom: 1.1rem;
+  margin-top: 3rem;
 }
 
 @media (max-width: 480px) {
